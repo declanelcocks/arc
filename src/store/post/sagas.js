@@ -1,8 +1,8 @@
 import { take, put, call, fork } from 'redux-saga/effects'
-import api from 'services/api'
+import defaultApi from 'services/api'
 import { postList, postCreate, POST_LIST_REQUEST, POST_CREATE_REQUEST } from './actions'
 
-export function* createPost(newData) {
+export function* createPost(newData, api) {
   try {
     const { data } = yield call(api.post, '/posts', newData)
     yield put(postCreate.success(data))
@@ -11,7 +11,7 @@ export function* createPost(newData) {
   }
 }
 
-export function* listPosts(limit) {
+export function* listPosts(limit, api) {
   try {
     const params = { _limit: limit }
     const { data } = yield call(api.get, '/posts', { params })
@@ -21,21 +21,24 @@ export function* listPosts(limit) {
   }
 }
 
-export function* watchPostCreateRequest() {
+export function* watchPostCreateRequest(api) {
   while (true) {
     const { data } = yield take(POST_CREATE_REQUEST)
-    yield call(createPost, data)
+    yield call(createPost, data, api)
   }
 }
 
-export function* watchPostListRequest() {
+export function* watchPostListRequest(api) {
   while (true) {
     const { limit } = yield take(POST_LIST_REQUEST)
-    yield call(listPosts, limit)
+    yield call(listPosts, limit, api)
   }
 }
 
-export default function* () {
-  yield fork(watchPostCreateRequest)
-  yield fork(watchPostListRequest)
+// istanbul ignore next
+function* main(api = defaultApi) {
+  yield fork(watchPostCreateRequest, api)
+  yield fork(watchPostListRequest, api)
 }
+
+export default main
