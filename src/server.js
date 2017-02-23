@@ -73,6 +73,8 @@ router.use((req, res, next) => {
       let content
 
       if (isDev) {
+        // Place content in `AppContainer` in development
+        // Otherwise the client rendered HTML will not match the server rendered HTML
         content = renderToString(
           <AppContainer>
             <Provider store={store}>
