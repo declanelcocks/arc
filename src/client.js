@@ -4,7 +4,7 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { AppContainer } from 'react-hot-loader'
 import { createHistory } from 'history'
-import { Router, useRouterHistory } from 'react-router'
+import { match, Router, useRouterHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { basename } from 'config'
 import configureStore from 'store/configure'
@@ -18,15 +18,20 @@ const store = configureStore(initialState, baseHistory)
 const history = syncHistoryWithStore(baseHistory, store)
 const root = document.getElementById('app')
 
-const renderApp = () => (
+const renderApp = (renderProps) => (
   <AppContainer>
     <Provider store={store}>
-      <Router key={Math.random()} history={history} routes={routes} />
+      <Router {...renderProps} />
     </Provider>
   </AppContainer>
 )
 
-render(renderApp(), root)
+const { pathname, search, hash } = window.location
+const location = `${pathname}${search}${hash}`
+
+match({ history, routes, location }, (error, redirectLocation, renderProps) => {
+  render(renderApp(renderProps), root)
+})
 
 if (module.hot) {
   module.hot.accept('routes', () => {
