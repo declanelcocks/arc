@@ -18,24 +18,26 @@ const store = configureStore(initialState, baseHistory)
 const history = syncHistoryWithStore(baseHistory, store)
 const root = document.getElementById('app')
 
-const renderApp = (renderProps) => (
-  <AppContainer>
-    <Provider store={store}>
-      <Router {...renderProps} />
-    </Provider>
-  </AppContainer>
-)
-
 const { pathname, search, hash } = window.location
 const location = `${pathname}${search}${hash}`
 
-match({ history, routes, location }, (error, redirectLocation, renderProps) => {
-  render(renderApp(renderProps), root)
-})
+const renderApp = () => {
+  match({ history, routes, location }, (error, redirectLocation, renderProps) => {
+    render(
+      <AppContainer>
+        <Provider store={store}>
+          <Router key={Math.random()} {...renderProps} />
+        </Provider>
+      </AppContainer>,
+      root,
+    )
+  })
+}
 
 if (module.hot) {
   module.hot.accept('routes', () => {
-    require('routes')
-    render(renderApp(), root)
+    renderApp()
   })
 }
+
+renderApp()
