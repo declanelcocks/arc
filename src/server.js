@@ -19,8 +19,6 @@ import { setCsrfToken } from 'store/actions'
 import Html from 'components/Html'
 
 const router = new Router()
-const isDev = env === 'development'
-const AppContainer = isDev ? require('react-hot-loader').AppContainer : ''
 
 mongoose.connect(mongo.uri)
 
@@ -29,7 +27,7 @@ router.use('/api', cors(), api)
 router.use(csrf({ cookie: true }))
 
 router.use((req, res, next) => {
-  if (isDev) {
+  if (env === 'development') {
     global.webpackIsomorphicTools.refresh()
   }
 
@@ -70,26 +68,11 @@ router.use((req, res, next) => {
     })
 
     const render = (store) => {
-      let content
-
-      if (isDev) {
-        // Place content in `AppContainer` in development
-        // Otherwise the client rendered HTML will not match the server rendered HTML
-        content = renderToString(
-          <AppContainer>
-            <Provider store={store}>
-              <RouterContext {...renderProps} />
-            </Provider>
-          </AppContainer>
-        )
-      } else {
-        content = renderToString(
-          <Provider store={store}>
-            <RouterContext {...renderProps} />
-          </Provider>
-        )
-      }
-
+      const content = renderToString(
+        <Provider store={store}>
+          <RouterContext {...renderProps} />
+        </Provider>
+      )
       const styles = styleSheet.rules().map(rule => rule.cssText).join('\n')
       const initialState = store.getState()
       const assets = global.webpackIsomorphicTools.assets()
