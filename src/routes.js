@@ -9,7 +9,7 @@ const routes = {
         require.ensure([], (require) => {
           cb(null, require('components/pages/HomePage').default)
         })
-      }
+      },
     },
     {
       path: '/sample-page',
@@ -17,7 +17,7 @@ const routes = {
         require.ensure([], (require) => {
           cb(null, require('containers/SamplePage').default)
         })
-      }
+      },
     },
     {
       path: '*',
@@ -25,9 +25,9 @@ const routes = {
         require.ensure([], (require) => {
           cb(null, require('containers/NotFoundPage').default)
         })
-      }
-    }
-  ]
+      },
+    },
+  ],
 }
 
 export default routes
