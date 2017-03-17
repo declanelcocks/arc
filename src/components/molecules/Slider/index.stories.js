@@ -3,15 +3,15 @@ import { storiesOf } from '@kadira/storybook'
 import Slider from '.'
 
 storiesOf('Slider', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <Slider />
   ))
-  .add('reverse', () => (
+  .addWithInfo('reverse', () => (
     <Slider reverse min={0} max={10} step={0.05} defaultValue={5} />
   ))
-  .add('disabled', () => (
+  .addWithInfo('disabled', () => (
     <Slider disabled min={0} max={10} step={0.05} defaultValue={5} />
   ))
-  .add('responsive with breakpoint', () => (
+  .addWithInfo('responsive with breakpoint', () => (
     <Slider responsive min={0} max={10} step={0.05} defaultValue={5} breakpoint={450} />
   ))

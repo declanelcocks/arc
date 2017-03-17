@@ -3,9 +3,9 @@ import { storiesOf } from '@kadira/storybook'
 import Organism from '.'
 
 storiesOf('Organism', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <Organism />
   ))
-  .add('reverse', () => (
+  .addWithInfo('reverse', () => (
     <Organism reverse />
   ))

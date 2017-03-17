@@ -3,12 +3,12 @@ import { storiesOf } from '@kadira/storybook'
 import Badge from '.'
 
 storiesOf('Badge', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <Badge>Hello</Badge>
   ))
-  .add('reverse', () => (
+  .addWithInfo('reverse', () => (
     <Badge reverse>Hello</Badge>
   ))
-  .add('another palette', () => (
+  .addWithInfo('another palette', () => (
     <Badge palette="secondary">Hello</Badge>
   ))

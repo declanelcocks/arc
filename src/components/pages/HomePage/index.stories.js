@@ -3,6 +3,6 @@ import { storiesOf } from '@kadira/storybook'
 import HomePage from '.'
 
 storiesOf('HomePage', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <HomePage />
   ))

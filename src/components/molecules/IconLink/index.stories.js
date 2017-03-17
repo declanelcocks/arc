@@ -3,12 +3,12 @@ import { storiesOf } from '@kadira/storybook'
 import IconLink from '.'
 
 storiesOf('IconLink', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <IconLink icon="close" href="#">Hello</IconLink>
   ))
-  .add('right', () => (
+  .addWithInfo('right', () => (
     <IconLink icon="close" href="#" right>Hello</IconLink>
   ))
-  .add('inside paragraph', () => (
+  .addWithInfo('inside paragraph', () => (
     <p>Consequat cupidatat id <IconLink icon="close" href="#">excepteur</IconLink> ex nisi proident et sunt fugiat id pariatur.</p>
   ))

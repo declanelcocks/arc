@@ -3,7 +3,7 @@ import { storiesOf, action } from '@kadira/storybook'
 import ConfirmModal from '.'
 
 storiesOf('ConfirmModal', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <ConfirmModal
       name="confirm"
       onConfirm={action('confirmed')}
@@ -11,7 +11,7 @@ storiesOf('ConfirmModal', module)
       isOpen
     />
   ))
-  .add('different button labels', () => (
+  .addWithInfo('different button labels', () => (
     <ConfirmModal
       name="confirm"
       confirmLabel="Foo"
@@ -21,7 +21,7 @@ storiesOf('ConfirmModal', module)
       isOpen
     />
   ))
-  .add('different button props', () => (
+  .addWithInfo('different button props', () => (
     <ConfirmModal
       name="confirm"
       confirmLabel="Remove"

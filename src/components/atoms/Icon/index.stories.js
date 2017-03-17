@@ -3,15 +3,15 @@ import { storiesOf } from '@kadira/storybook'
 import Icon from '.'
 
 storiesOf('Icon', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <Icon icon="close" />
   ))
-  .add('palette', () => (
+  .addWithInfo('palette', () => (
     <Icon icon="close" palette="primary" />
   ))
-  .add('palette reverse', () => (
+  .addWithInfo('palette reverse', () => (
     <Icon icon="close" palette="primary" reverse />
   ))
-  .add('height', () => (
+  .addWithInfo('height', () => (
     <Icon icon="close" height={100} />
   ))

@@ -3,28 +3,28 @@ import { storiesOf } from '@kadira/storybook'
 import List from '.'
 
 storiesOf('List', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <List>
       <li>Item 1</li>
       <li>Item 2</li>
       <li>Item 3</li>
     </List>
   ))
-  .add('ordered', () => (
+  .addWithInfo('ordered', () => (
     <List ordered>
       <li>Item 1</li>
       <li>Item 2</li>
       <li>Item 3</li>
     </List>
   ))
-  .add('palette', () => (
+  .addWithInfo('palette', () => (
     <List palette="primary">
       <li>Item 1</li>
       <li>Item 2</li>
       <li>Item 3</li>
     </List>
   ))
-  .add('palette reverse', () => (
+  .addWithInfo('palette reverse', () => (
     <List palette="primary" reverse>
       <li>Item 1</li>
       <li>Item 2</li>
