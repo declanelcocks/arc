@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 import { User } from 'api/user'
 
 export const isAuthenticated = (req, res, next) => {
-  req.isAuthenticated = function() {
+  req.isAuthenticated = function checkForToken() {
     const token = (req.headers.authorization && req.headers.authorization.split(' ')[1]) || req.cookies.token
 
     try {
