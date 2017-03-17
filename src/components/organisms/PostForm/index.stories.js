@@ -3,6 +3,6 @@ import { storiesOf } from '@kadira/storybook'
 import PostForm from '.'
 
 storiesOf('PostForm', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <PostForm />
   ))

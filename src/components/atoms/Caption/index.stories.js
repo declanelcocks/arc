@@ -3,9 +3,9 @@ import { storiesOf } from '@kadira/storybook'
 import Caption from '.'
 
 storiesOf('Caption', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <Caption>Hello</Caption>
   ))
-  .add('reverse', () => (
+  .addWithInfo('reverse', () => (
     <Caption reverse>Hello</Caption>
   ))

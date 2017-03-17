@@ -3,9 +3,9 @@ import { storiesOf } from '@kadira/storybook'
 import Label from '.'
 
 storiesOf('Label', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <Label>Hello</Label>
   ))
-  .add('reverse', () => (
+  .addWithInfo('reverse', () => (
     <Label reverse>Hello</Label>
   ))

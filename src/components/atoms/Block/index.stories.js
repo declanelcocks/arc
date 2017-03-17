@@ -3,26 +3,26 @@ import { storiesOf } from '@kadira/storybook'
 import Block from '.'
 
 storiesOf('Block', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <Block>Officia aliqua reprehenderit fugiat occaecat quis non eiusmod.</Block>
   ))
-  .add('reverse', () => (
+  .addWithInfo('reverse', () => (
     <Block reverse>Officia aliqua reprehenderit fugiat occaecat quis non eiusmod.</Block>
   ))
-  .add('palette', () => (
+  .addWithInfo('palette', () => (
     <Block palette="primary">Officia aliqua reprehenderit fugiat occaecat quis non eiusmod.</Block>
   ))
-  .add('palette reverse', () => (
+  .addWithInfo('palette reverse', () => (
     <Block palette="primary" reverse>
       Officia aliqua reprehenderit fugiat occaecat quis non eiusmod.
     </Block>
   ))
-  .add('palette opaque', () => (
+  .addWithInfo('palette opaque', () => (
     <Block palette="primary" opaque>
       Officia aliqua reprehenderit fugiat occaecat quis non eiusmod.
     </Block>
   ))
-  .add('palette opaque reverse', () => (
+  .addWithInfo('palette opaque reverse', () => (
     <Block palette="primary" opaque reverse>
       Officia aliqua reprehenderit fugiat occaecat quis non eiusmod.
     </Block>

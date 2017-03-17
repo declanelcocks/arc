@@ -3,9 +3,9 @@ import { storiesOf } from '@kadira/storybook'
 import ReduxField from '.'
 
 storiesOf('ReduxField', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <ReduxField input={{ name: 'name' }} meta={{}} />
   ))
-  .add('error', () => (
+  .addWithInfo('error', () => (
     <ReduxField input={{ name: 'name' }} meta={{ touched: true, error: 'Invalid' }} />
   ))

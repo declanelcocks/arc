@@ -3,6 +3,6 @@ import { storiesOf } from '@kadira/storybook'
 import SamplePage from '.'
 
 storiesOf('SamplePage', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <SamplePage />
   ))

@@ -3,6 +3,6 @@ import { storiesOf } from '@kadira/storybook'
 import Hero from '.'
 
 storiesOf('Hero', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <Hero />
   ))

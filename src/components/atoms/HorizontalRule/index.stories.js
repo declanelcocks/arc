@@ -3,12 +3,12 @@ import { storiesOf } from '@kadira/storybook'
 import HorizontalRule from '.'
 
 storiesOf('HorizontalRule', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <HorizontalRule />
   ))
-  .add('palette', () => (
+  .addWithInfo('palette', () => (
     <HorizontalRule palette="primary" />
   ))
-  .add('palette reverse', () => (
+  .addWithInfo('palette reverse', () => (
     <HorizontalRule palette="primary" reverse />
   ))

@@ -10,9 +10,9 @@ const list = [
 ]
 
 storiesOf('PostList', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <PostList list={list} />
   ))
-  .add('loading', () => (
+  .addWithInfo('loading', () => (
     <PostList list={[]} loading />
   ))

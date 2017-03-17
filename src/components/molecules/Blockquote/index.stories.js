@@ -3,17 +3,17 @@ import { storiesOf } from '@kadira/storybook'
 import Blockquote from '.'
 
 storiesOf('Blockquote', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <Blockquote>
       Ullamco et reprehenderit magna cillum ullamco consectetur et enim aliqua.
     </Blockquote>
   ))
-  .add('reverse', () => (
+  .addWithInfo('reverse', () => (
     <Blockquote reverse>
       Ullamco et reprehenderit magna cillum ullamco consectetur et enim aliqua.
     </Blockquote>
   ))
-  .add('with cite', () => (
+  .addWithInfo('with cite', () => (
     <Blockquote cite="Foo">
       Ullamco et reprehenderit magna cillum ullamco consectetur et enim aliqua.
     </Blockquote>
