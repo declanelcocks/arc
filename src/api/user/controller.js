@@ -9,77 +9,72 @@ export const generateToken = (user) => {
     iss: 'my.domain.com',
     sub: user.id,
     iat: moment().unix(),
-    exp: moment().add(7, 'days').unix()
+    exp: moment().add(7, 'days').unix(),
   }
 
   return jwt.sign(payload, process.env.TOKEN_SECRET)
 }
 
 export const authGithub = (req, res) => {
-  var accessTokenUrl = 'https://github.com/login/oauth/access_token';
-  var userUrl = 'https://api.github.com/user';
+  const accessTokenUrl = 'https://github.com/login/oauth/access_token'
+  const userUrl = 'https://api.github.com/user'
 
-  var params = {
+  const params = {
     code: req.body.code,
     client_id: req.body.clientId,
     client_secret: process.env.GITHUB_SECRET,
     redirect_uri: req.body.redirectUri,
-    grant_type: 'authorization_code'
-  };
+    grant_type: 'authorization_code',
+  }
 
   // Step 1. Exchange authorization code for access token.
-  request.post(accessTokenUrl, { json: true, form: params }, function(err, response, token) {
-    var accessToken = token.access_token;
-    var headers = {
-      'Authorization': 'Bearer ' + accessToken,
-      'User-Agent': 'MegaBoilerplate'
-    };
-
-    console.log('-------------- authGithub-step1: token', token);
-    console.log(params);
+  request.post(accessTokenUrl, { json: true, form: params }, (err, response, token) => {
+    const accessToken = token.access_token
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+      'User-Agent': 'MegaBoilerplate',
+    }
 
     // Step 2. Retrieve user's profile information.
-    request.get({ url: userUrl, headers: headers, json: true }, function(err, response, profile) {
-      console.log('-------------- authGithub-step2: profile', profile);
-      if (profile.error) res.status(500).send({ error: profile.error.message });
+    request.get({ url: userUrl, headers, json: true }, (err, response, profile) => {
+      if (profile.error) return res.status(500).send({ error: profile.error.message })
 
       // Step 3a. Link accounts if user is authenticated.
       if (req.isAuthenticated()) {
-        console.log('-------------- authGithub-step3a');
-        User.findOne({ github: profile.id }, function(err, user) {
+        return User.findOne({ github: profile.id }, (err, user) => {
           if (user) {
-            return res.status(409).send({ error: 'There is already an existing account linked with this Github account.' });
+            return res.status(409).send({ error: 'There is already an existing account linked with this Github account.' })
           }
 
           if (!user) return res.status(401).send({ error: 'Your login has expired.' })
 
-          user = req.user;
-          user.name = user.name || profile.name;
-          user.github = profile.id;
-          user.save(function() {
-            res.send({ token: generateToken(user), user: user });
-          });
-        });
-      } else {
-        console.log('-------------- authGithub-step3b');
-        // Step 3b. Create a new user account or return an existing one.
-        User.findOne({ github: profile.id }, function(err, user) {
-          // User exists
-          if (user) return res.send({ token: generateToken(user), user: user });
+          const userWithGithub = req.user
+          userWithGithub.name = user.name || profile.name
+          userWithGithub.github = profile.id
 
-          user = new User({
-            name: profile.name,
-            email: profile.email,
-            github: profile.id
-          });
-
-          user.save(function(err) {
-            res.send({ token: generateToken(user), user: user });
-          });
-        });
+          return user.save(() => res.send({ token: generateToken(userWithGithub), user: userWithGithub }))
+        })
       }
-    });
-  });
+
+      // Step 3b. Create a new user account or return an existing one.
+      return User.findOne({ github: profile.id }, (err, user) => {
+        // User exists
+        if (user) return res.send({ token: generateToken(user), user })
+
+        const newUser = new User({
+          name: profile.name,
+          email: profile.email,
+          github: profile.id,
+        })
+
+        return newUser.save((error) => {
+          if (error) return res.status(400).send({ error })
+
+          return res.send({ token: generateToken(newUser), user: newUser })
+        })
+      })
+    })
+  })
 }
 
 export const authGithubCallback = ({ res }) => res.send({ msg: 'loading' })
