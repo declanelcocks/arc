@@ -15,6 +15,14 @@ export const generateToken = (user) => {
   return jwt.sign(payload, process.env.TOKEN_SECRET)
 }
 
+export const currentUser = (req, res) => {
+  if (!req.user) return res.status(401).send({ error: 'Your login has expired.' })
+
+  User.findOne({ _id: req.user._id }, (err, user) =>
+    res.send({ token: generateToken(user), user })
+  )
+}
+
 export const authGithub = (req, res) => {
   const accessTokenUrl = 'https://github.com/login/oauth/access_token'
   const userUrl = 'https://api.github.com/user'

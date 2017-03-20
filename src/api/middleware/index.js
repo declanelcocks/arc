@@ -2,9 +2,13 @@ import jwt from 'jsonwebtoken'
 
 import { User } from 'api/user'
 
-export const isAuthenticated = (req, res, next) => {
+export function isAuthenticated(req, res, next) {
   req.isAuthenticated = function checkForToken() {
+    console.log('isAuthenticated');
+
     const token = (req.headers.authorization && req.headers.authorization.split(' ')[1]) || req.cookies.token
+
+    console.log(token);
 
     try {
       return jwt.verify(token, process.env.TOKEN_SECRET)
@@ -23,4 +27,12 @@ export const isAuthenticated = (req, res, next) => {
   } else {
     next()
   }
+}
+
+export function ensureAuth(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+
+  return res.status(401).send({ error: 'Unauthorized' });
 }

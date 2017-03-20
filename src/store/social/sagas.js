@@ -231,6 +231,23 @@ export function* watchSocialLoginGithub() {
   }
 }
 
+export function* loginLocal({ token }) {
+  try {
+    const { token, user } = yield api.get('/users')
+    localStorage.setItem('token', token)
+    yield put(actions.socialLoginSuccess(user))
+  } catch (e) {
+    yield put(actions.socialLoginFailure(e))
+  }
+}
+
+export function* watchSocialLoginLocal() {
+  while (true) {
+    const { options } = yield take(serviceAction('REQUEST', 'local'))
+    yield call(loginLocal, options)
+  }
+}
+
 export function* watchSocialLogout() {
   while (true) {
     yield take(actions.SOCIAL_LOGOUT)
@@ -239,6 +256,7 @@ export function* watchSocialLogout() {
 }
 
 export default function* () {
+  yield fork(watchSocialLoginLocal)
   yield fork(watchSocialLoginFacebook)
   yield fork(watchSocialLoginGoogle)
   yield fork(watchSocialLoginGithub)
