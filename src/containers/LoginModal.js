@@ -1,8 +1,8 @@
 import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux'
 import { fbAppId, googleClientId } from 'config'
-import { fromSocial } from 'store/selectors'
-import { socialLoginPrepare, socialLoginRequest, modalHide } from 'store/actions'
+import { fromAuth } from 'store/selectors'
+import { authLoginPrepare, authLoginRequest, modalHide } from 'store/actions'
 
 import LoginModal from 'components/organisms/LoginModal'
 
@@ -23,15 +23,15 @@ class LoginModalContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  user: fromSocial.getUser(state),
+  user: fromAuth.getUser(state),
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  prepareGoogle: () => dispatch(socialLoginPrepare('google', { client_id: googleClientId })),
-  prepareFacebook: () => dispatch(socialLoginPrepare('facebook', { appId: fbAppId })),
-  onFacebookLogin: () => dispatch(socialLoginRequest('facebook')),
-  onGoogleLogin: () => dispatch(socialLoginRequest('google')),
-  onGithubLogin: () => dispatch(socialLoginRequest('github')),
+  prepareGoogle: () => dispatch(authLoginPrepare('google', { client_id: googleClientId })),
+  prepareFacebook: () => dispatch(authLoginPrepare('facebook', { appId: fbAppId })),
+  onFacebookLogin: () => dispatch(authLoginRequest('facebook')),
+  onGoogleLogin: () => dispatch(authLoginRequest('google')),
+  onGithubLogin: () => dispatch(authLoginRequest('github')),
   onClose: () => dispatch(modalHide('login')),
 })
 

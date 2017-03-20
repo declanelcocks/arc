@@ -38,16 +38,16 @@ export const appendFbRoot = () => {
 }
 
 export const serviceAction = (suffix, service) => (action) =>
-  action.type === `SOCIAL_LOGIN_${suffix}` && action.service === service
+  action.type === `AUTH_LOGIN_${suffix}` && action.service === service
 
 export function* loginFacebook({ scope = 'public_profile', fields = 'id,name', ...options } = {}) {
   try {
     yield call(promises.fbLogin, { scope, ...options })
     const data = yield call(promises.fbGetMe, { fields })
     const picture = `https://graph.facebook.com/${data.id}/picture?type=normal`
-    yield put(actions.socialLoginSuccess({ ...data, picture }))
+    yield put(actions.authLoginSuccess({ ...data, picture }))
   } catch (e) {
-    yield put(actions.socialLoginFailure(e))
+    yield put(actions.authLoginFailure(e))
   }
 }
 
@@ -57,11 +57,11 @@ export function* prepareFacebook({ appId, version = 'v2.8', ...options }) {
     yield call(promises.loadScript, '//connect.facebook.net/en_US/sdk.js')
     yield call([window.FB, window.FB.init], { appId, version, ...options })
   } catch (e) {
-    yield put(actions.socialLoginFailure(e))
+    yield put(actions.authLoginFailure(e))
   }
 }
 
-export function* watchSocialLoginFacebook() {
+export function* watchAuthLoginFacebook() {
   const { options } = yield take(serviceAction('PREPARE', 'facebook'))
   yield call(prepareFacebook, options)
   while (true) {
@@ -77,9 +77,9 @@ export function* loginGoogle({ scope = 'profile', ...options } = {}) {
     const profile = yield call([user, user.getBasicProfile])
     const name = yield call([profile, profile.getName])
     const picture = yield call([profile, profile.getImageUrl])
-    yield put(actions.socialLoginSuccess({ name, picture }))
+    yield put(actions.authLoginSuccess({ name, picture }))
   } catch (e) {
-    yield put(actions.socialLoginFailure(e))
+    yield put(actions.authLoginFailure(e))
   }
 }
 
@@ -89,11 +89,11 @@ export function* prepareGoogle({ client_id, ...options }) {
     yield call(promises.loadGoogleAuth2)
     yield call(window.gapi.auth2.init, { client_id, ...options })
   } catch (e) {
-    yield put(actions.socialLoginFailure(e))
+    yield put(actions.authLoginFailure(e))
   }
 }
 
-export function* watchSocialLoginGoogle() {
+export function* watchAuthLoginGoogle() {
   const { options } = yield take(serviceAction('PREPARE', 'google'))
   yield call(prepareGoogle, options)
   while (true) {
@@ -216,15 +216,15 @@ export function* loginGithub() {
     const { token, user, window: exWindow, interval: exInterval } = yield exchangeCodeForToken({ oauthData, config, window: ppWindow, interval })
 
     localStorage.setItem('token', token)
-    yield put(actions.socialLoginSuccess(user))
+    yield put(actions.authLoginSuccess(user))
 
     yield closePopup({ window: exWindow, interval: exInterval })
   } catch (e) {
-    yield put(actions.socialLoginFailure(e))
+    yield put(actions.authLoginFailure(e))
   }
 }
 
-export function* watchSocialLoginGithub() {
+export function* watchAuthLoginGithub() {
   while (true) {
     yield take(serviceAction('REQUEST', 'github'))
     yield call(loginGithub)
@@ -235,30 +235,30 @@ export function* loginLocal({ token }) {
   try {
     const { token, user } = yield api.get('/users')
     localStorage.setItem('token', token)
-    yield put(actions.socialLoginSuccess(user))
+    yield put(actions.authLoginSuccess(user))
   } catch (e) {
-    yield put(actions.socialLoginFailure(e))
+    yield put(actions.authLoginFailure(e))
   }
 }
 
-export function* watchSocialLoginLocal() {
+export function* watchAuthLoginLocal() {
   while (true) {
     const { options } = yield take(serviceAction('REQUEST', 'local'))
     yield call(loginLocal, options)
   }
 }
 
-export function* watchSocialLogout() {
+export function* watchAuthLogout() {
   while (true) {
-    yield take(actions.SOCIAL_LOGOUT)
+    yield take(actions.AUTH_LOGOUT)
     localStorage.removeItem('token')
   }
 }
 
 export default function* () {
-  yield fork(watchSocialLoginLocal)
-  yield fork(watchSocialLoginFacebook)
-  yield fork(watchSocialLoginGoogle)
-  yield fork(watchSocialLoginGithub)
-  yield fork(watchSocialLogout)
+  yield fork(watchAuthLoginLocal)
+  yield fork(watchAuthLoginFacebook)
+  yield fork(watchAuthLoginGoogle)
+  yield fork(watchAuthLoginGithub)
+  yield fork(watchAuthLogout)
 }
