@@ -5,14 +5,16 @@ const routes = {
   childRoutes: [
     {
       path: '/',
+      name: 'home',
       getComponent(nextState, cb) {
         require.ensure([], (require) => {
-          cb(null, require('components/pages/HomePage').default)
+          cb(null, require('containers/HomePage').default)
         })
       },
     },
     {
       path: '/sample-page',
+      name: 'samplepage',
       getComponent(nextState, cb) {
         require.ensure([], (require) => {
           cb(null, require('containers/SamplePage').default)
@@ -21,6 +23,7 @@ const routes = {
     },
     {
       path: '*',
+      name: 'notfound',
       getComponent(nextState, cb) {
         require.ensure([], (require) => {
           cb(null, require('containers/NotFoundPage').default)

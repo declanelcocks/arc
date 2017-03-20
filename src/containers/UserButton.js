@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { fromSocial } from 'store/selectors'
 import { modalShow, socialLogout } from 'store/actions'
 
-import { UserButton } from 'components'
+import UserButton from 'components/organisms/UserButton'
 
 const UserButtonContainer = props => <UserButton {...props} />
 

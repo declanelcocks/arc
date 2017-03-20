@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import styled from 'styled-components'
 
-import { Post } from 'components'
+import Post from 'components/molecules/Post'
 
 const Wrapper = styled.div`
   & > * {

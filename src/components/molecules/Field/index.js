@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react'
 import styled from 'styled-components'
 
-import { Label, Input, Block } from 'components'
+import Label from 'components/atoms/Label'
+import Input from 'components/atoms/Input'
+import Block from 'components/atoms/Block'
 
 const Error = styled(Block)`
   margin: 0.5rem 0 0;

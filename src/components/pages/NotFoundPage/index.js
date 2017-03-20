@@ -1,6 +1,9 @@
 import React from 'react'
 
-import { PageTemplate, Header, Footer, Heading } from 'components'
+import Heading from 'components/atoms/Heading'
+import Header from 'components/organisms/Header'
+import Footer from 'components/organisms/Footer'
+import PageTemplate from 'components/templates/PageTemplate'
 
 const NotFoundPage = () => {
   return (

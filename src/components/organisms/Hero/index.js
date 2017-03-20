@@ -2,7 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import { palette } from 'styled-theme'
 
-import { Block, Paragraph, IconLink, IconButton, LogoImage, Tooltip } from 'components'
+import Block from 'components/atoms/Block'
+import Paragraph from 'components/atoms/Paragraph'
+import Tooltip from 'components/atoms/Tooltip'
+import LogoImage from 'components/atoms/LogoImage'
+import IconLink from 'components/molecules/IconLink'
+import IconButton from 'components/molecules/IconButton'
 
 const Wrapper = styled(Block)`
   display: flex;

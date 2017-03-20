@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import styled from 'styled-components'
 import { palette } from 'styled-theme'
 
-import { Link } from 'components'
+import Link from 'components/atoms/Link'
 
 const Nav = styled.nav`
   display: flex;

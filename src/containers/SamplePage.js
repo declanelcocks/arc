@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import submit from 'redux-form-submit'
 import { postListReadRequest } from 'store/actions'
 
-import { SamplePage } from 'components'
+import SamplePage from 'components/pages/SamplePage'
 import { config } from './PostForm'
 
 class SamplePageContainer extends Component {

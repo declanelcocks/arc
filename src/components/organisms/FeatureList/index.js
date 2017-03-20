@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Feature, Link, Heading } from 'components'
+import Link from 'components/atoms/Link'
+import Heading from 'components/atoms/Heading'
+import Feature from 'components/molecules/Feature'
 
 const Grid = styled.div`
   display: flex;

@@ -1,8 +1,8 @@
 import React, { PropTypes, Component } from 'react'
 import styled from 'styled-components'
 
-import { IconButton } from 'components'
-import { Modal } from 'containers'
+import IconButton from 'components/molecules/IconButton'
+import Modal from 'containers/Modal'
 
 const Wrapper = styled.div`
   display: flex;
