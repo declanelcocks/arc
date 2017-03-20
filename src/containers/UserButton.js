@@ -1,19 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fromSocial } from 'store/selectors'
-import { modalShow, socialLogout } from 'store/actions'
+import { fromAuth } from 'store/selectors'
+import { modalShow, authLogout } from 'store/actions'
 
 import UserButton from 'components/organisms/UserButton'
 
 const UserButtonContainer = props => <UserButton {...props} />
 
 const mapStateToProps = (state) => ({
-  user: fromSocial.getUser(state),
+  user: fromAuth.getUser(state),
 })
 
 const mapDispatchToProps = (dispatch) => ({
   onLogin: () => dispatch(modalShow('login')),
-  onLogout: () => dispatch(socialLogout()),
+  onLogout: () => dispatch(authLogout()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserButtonContainer)

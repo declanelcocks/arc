@@ -8,7 +8,7 @@ import { match, Router, useRouterHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { basename } from 'config'
 import configureStore from 'store/configure'
-import { socialLoginRequest } from 'store/actions'
+import { authLoginRequest } from 'store/actions'
 
 import routes from 'routes'
 
@@ -25,7 +25,7 @@ const location = `${pathname}${search}${hash}`
 const token = localStorage.getItem('token')
 
 if (token) {
-  store.dispatch(socialLoginRequest('local', { token }))
+  store.dispatch(authLoginRequest('local', { token }))
 }
 
 const renderApp = () => {
