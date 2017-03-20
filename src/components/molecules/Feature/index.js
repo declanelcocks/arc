@@ -1,7 +1,11 @@
 import React, { PropTypes } from 'react'
 import styled from 'styled-components'
 
-import { Icon, Link, Paragraph, Heading, Badge } from 'components'
+import Icon from 'components/atoms/Icon'
+import Link from 'components/atoms/Link'
+import Paragraph from 'components/atoms/Paragraph'
+import Heading from 'components/atoms/Heading'
+import Badge from 'components/atoms/Badge'
 
 const Wrapper = styled.div`
   position: relative;

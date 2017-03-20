@@ -23,8 +23,9 @@ const config = {
   },
   output: {
     path: path.join(__dirname, '../dist'),
-    filename: '[name].[hash].js',
-    publicPath: DEBUG ? `http://${ip}:${port}/` : PUBLIC_PATH,
+    filename: '[name]-[hash].js',
+    chunkFilename: '[name]-[chunkhash].js',
+    publicPath: DEBUG ? `http://${ip}:${port}/` : PUBLIC_PATH
   },
   resolve: {
     modules: ['src', 'node_modules'],
@@ -35,6 +36,11 @@ const config = {
       'process.env.PUBLIC_PATH': JSON.stringify(PUBLIC_PATH),
     }),
     new ProgressBarPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: isVendor,
+    }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
   ],
   module: {
     rules: [
@@ -61,13 +67,7 @@ if (DEBUG) {
     new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig),
   ])
 } else {
-  config.output.filename = '[name].[chunkHash].js'
-
   config.plugins = config.plugins.concat([
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: isVendor,
-    }),
     new WebpackMd5Hash(),
     new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }),
     new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig),

@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import styled from 'styled-components'
 import { font, palette } from 'styled-theme'
 
-import { Caption } from 'components'
+import Caption from 'components/atoms/Caption'
 
 const StyledTable = styled.table`
   font-family: ${font('primary')};

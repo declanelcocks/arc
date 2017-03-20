@@ -2,7 +2,9 @@ import React, { PropTypes } from 'react'
 import { Field } from 'redux-form'
 import styled from 'styled-components'
 
-import { ReduxField, Heading, Button } from 'components'
+import Heading from 'components/atoms/Heading'
+import Button from 'components/atoms/Button'
+import ReduxField from 'components/organisms/ReduxField'
 
 const Form = styled.form`
   width: 100%;

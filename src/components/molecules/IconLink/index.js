@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react'
 import styled from 'styled-components'
 
-import { Icon, Link } from 'components'
+import Icon from 'components/atoms/Icon'
+import Link from 'components/atoms/Link'
 
 const fontSize = ({ height }) => height ? `${height / 3 / 16}rem` : '0.75em'
 

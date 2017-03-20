@@ -2,7 +2,8 @@ import React, { PropTypes } from 'react'
 import styled, { css, keyframes } from 'styled-components'
 import { ifProp, get } from 'styled-tools'
 
-import { Icon, Button } from 'components'
+import Icon from 'components/atoms/Icon'
+import Button from 'components/atoms/Button'
 
 const fadeIn = keyframes`
   0% { display: none; opacity: 0; }

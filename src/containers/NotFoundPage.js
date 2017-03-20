@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { NotFoundPage } from 'components'
+import NotFoundPage from 'components/pages/NotFoundPage'
 
 class NotFoundPageContainer extends Component {
   static get({ res }) {

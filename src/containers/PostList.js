@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { fromEntities, fromPost, fromStatus } from 'store/selectors'
 import { postListReadRequest, POST_LIST_READ } from 'store/actions'
 
-import { PostList } from 'components'
+import PostList from 'components/organisms/PostList'
 
 class PostListContainer extends Component {
   static propTypes = {
