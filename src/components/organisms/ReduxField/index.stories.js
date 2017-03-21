@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
-import { ReduxField } from 'components'
+import ReduxField from '.'
 
 storiesOf('ReduxField', module)
   .add('default', () => (

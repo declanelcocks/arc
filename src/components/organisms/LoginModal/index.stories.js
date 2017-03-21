@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { LoginModal } from 'components'
+import LoginModal from '.'
 
 storiesOf('LoginModal', module)
   .add('default', () => (

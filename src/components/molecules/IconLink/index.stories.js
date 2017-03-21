@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
-import { IconLink } from 'components'
+import IconLink from '.'
 
 storiesOf('IconLink', module)
   .add('default', () => (

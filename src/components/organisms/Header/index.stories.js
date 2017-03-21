@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
-import { Header } from 'components'
+import Header from '.'
 
 storiesOf('Header', module)
   .add('default', () => (

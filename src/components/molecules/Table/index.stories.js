@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
-import { Table } from 'components'
+import Table from '.'
 
 storiesOf('Table', module)
   .add('default', () => (
