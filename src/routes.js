@@ -8,7 +8,7 @@ const routes = {
       name: 'home',
       getComponent(nextState, cb) {
         require.ensure([], (require) => {
-          cb(null, require('containers/HomePage').default)
+          cb(null, require('components/pages/HomePage').default)
         })
       },
     },
