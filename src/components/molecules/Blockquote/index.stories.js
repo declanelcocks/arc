@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
-import { Blockquote } from 'components'
+import Blockquote from '.'
 
 storiesOf('Blockquote', module)
   .add('default', () => (

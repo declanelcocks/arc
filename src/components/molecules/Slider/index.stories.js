@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
-import { Slider } from 'components'
+import Slider from '.'
 
 storiesOf('Slider', module)
   .add('default', () => (

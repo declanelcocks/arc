@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { UserButton } from 'components'
+import UserButton from '.'
 
 storiesOf('UserButton', module)
   .add('default', () => (

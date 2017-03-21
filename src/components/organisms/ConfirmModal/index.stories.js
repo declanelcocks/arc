@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { ConfirmModal } from 'components'
+import ConfirmModal from '.'
 
 storiesOf('ConfirmModal', module)
   .add('default', () => (

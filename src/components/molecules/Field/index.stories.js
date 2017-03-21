@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
-import { Field } from 'components'
+import Field from '.'
 
 storiesOf('Field', module)
   .add('default', () => (
