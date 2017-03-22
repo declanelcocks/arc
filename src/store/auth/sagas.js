@@ -1,4 +1,5 @@
 import { take, put, call, fork } from 'redux-saga/effects'
+import cookie from 'react-cookie'
 import { parse as parseUrl } from 'url'
 import {
   parse as parseQueryParams,
@@ -218,7 +219,7 @@ export function* loginGithub() {
     const { oauthData, window: ppWindow, interval } = yield pollPopup({ window, config })
     const { token, user, window: exWindow, interval: exInterval } = yield exchangeCodeForToken({ oauthData, config, window: ppWindow, interval })
 
-    localStorage.setItem('token', token)
+    cookie.save('token', token)
     yield put(actions.authLoginSuccess(user))
 
     yield closePopup({ window: exWindow, interval: exInterval })
@@ -237,7 +238,7 @@ export function* watchAuthLoginGithub() {
 export function* loginLocal({ token }) {
   try {
     const { token, user } = yield api.get('/users')
-    localStorage.setItem('token', token)
+    cookie.save('token', token)
     yield put(actions.authLoginSuccess(user))
   } catch (e) {
     yield put(actions.authLoginFailure(e))
@@ -254,7 +255,7 @@ export function* watchAuthLoginLocal() {
 export function* watchAuthLogout() {
   while (true) {
     yield take(actions.AUTH_LOGOUT)
-    localStorage.removeItem('token')
+    cookie.remove('token')
   }
 }
 

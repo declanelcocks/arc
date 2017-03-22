@@ -22,12 +22,6 @@ const root = document.getElementById('app')
 const { pathname, search, hash } = window.location
 const location = `${pathname}${search}${hash}`
 
-const token = localStorage.getItem('token')
-
-if (token) {
-  store.dispatch(authLoginRequest('local', { token }))
-}
-
 const renderApp = () => {
   match({ history, routes, location }, (error, redirectLocation, renderProps) => {
     render(

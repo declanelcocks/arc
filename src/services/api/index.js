@@ -1,4 +1,5 @@
 import 'isomorphic-fetch'
+import cookie from 'react-cookie'
 import { stringify } from 'query-string'
 import merge from 'lodash/merge'
 import { apiUrl } from 'config'
@@ -47,7 +48,7 @@ export const parseEndpoint = (endpoint, params) => {
 const api = {}
 
 api.request = (endpoint, { params, ...settings } = {}) => {
-  settings.authorization = localStorage.getItem('token') || null
+  settings.authorization = cookie.load('token')
 
   return new Promise((resolve, reject) =>
     fetch(parseEndpoint(endpoint, params), parseSettings(settings))

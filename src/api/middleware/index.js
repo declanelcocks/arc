@@ -4,11 +4,7 @@ import { User } from 'api/user'
 
 export function isAuthenticated(req, res, next) {
   req.isAuthenticated = function checkForToken() {
-    console.log('isAuthenticated');
-
     const token = (req.headers.authorization && req.headers.authorization.split(' ')[1]) || req.cookies.token
-
-    console.log(token);
 
     try {
       return jwt.verify(token, process.env.TOKEN_SECRET)
