@@ -31,6 +31,7 @@ const mapDispatchToProps = (dispatch) => ({
   prepareFacebook: () => dispatch(socialLoginPrepare('facebook', { appId: fbAppId })),
   onFacebookLogin: () => dispatch(socialLoginRequest('facebook')),
   onGoogleLogin: () => dispatch(socialLoginRequest('google')),
+  onGithubLogin: () => dispatch(socialLoginRequest('github')),
   onClose: () => dispatch(modalHide('login')),
 })
 

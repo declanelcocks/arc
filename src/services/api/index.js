@@ -20,12 +20,14 @@ export const parseSettings = ({ method = 'get', data, locale, ...otherSettings }
     'Content-Type': 'application/json',
     'Accept-Language': locale,
   }
+
   const settings = {
     body: data ? JSON.stringify(data) : undefined,
     method,
     headers,
     ...otherSettings,
   }
+
   return settings
 }
 

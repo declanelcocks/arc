@@ -27,12 +27,13 @@ class LoginModal extends Component {
   }
 
   render() {
-    const { onFacebookLogin, onGoogleLogin, ...props } = this.props
+    const { onFacebookLogin, onGoogleLogin, onGithubLogin, ...props } = this.props
     return (
       <Modal title="Login" name="login" closeable {...props}>
         <Wrapper>
           <IconButton onClick={onFacebookLogin} icon="facebook">Connect with Facebook</IconButton>
           <IconButton onClick={onGoogleLogin} icon="google">Connect with Google</IconButton>
+          <IconButton onClick={onGithubLogin} icon="github">Connect with Github</IconButton>
         </Wrapper>
       </Modal>
     )
