@@ -1,6 +1,9 @@
 import { take, put, call, fork } from 'redux-saga/effects'
-import url from 'url'
-import qs from 'querystring'
+import { parse as parseUrl } from 'url'
+import {
+  parse as parseQueryParams,
+  stringify as stringifyQueryParams,
+} from 'querystring'
 
 import api from 'services/api'
 import * as actions from './actions'
@@ -112,7 +115,7 @@ export function oauth2(config) {
       response_type: 'code',
     }
 
-    const url = `${config.authorizationUrl}?${qs.stringify(params)}`
+    const url = `${config.authorizationUrl}?${stringifyQueryParams(params)}`
     resolve({ url })
   })
 }
@@ -127,7 +130,7 @@ export function openPopup({ url, config }) {
       top: window.screenY + ((window.outerHeight - height) / 2.5),
       left: window.screenX + ((window.outerWidth - width) / 2),
     }
-    const popup = window.open(url, '_blank', qs.stringify(options, ','))
+    const popup = window.open(url, '_blank', stringifyQueryParams(options, ','))
 
     if (url === 'about:blank') {
       popup.document.body.innerHTML = 'Loading...'
@@ -139,11 +142,11 @@ export function openPopup({ url, config }) {
 
 export function pollPopup({ window, config, requestToken }) {
   return new Promise((resolve, reject) => {
-    const redirectUri = url.parse(config.redirectUri)
+    const redirectUri = parseUrl(config.redirectUri)
     const redirectUriPath = redirectUri.host + redirectUri.pathname
 
     if (requestToken) {
-      window.location = `${config.authorizationUrl}?${qs.stringify(requestToken)}`
+      window.location = `${config.authorizationUrl}?${stringifyQueryParams(requestToken)}`
     }
 
     const polling = setInterval(() => {
@@ -156,8 +159,8 @@ export function pollPopup({ window, config, requestToken }) {
 
         if (popupUrlPath === redirectUriPath) {
           if (window.location.search || window.location.hash) {
-            const query = qs.parse(window.location.search.substring(1).replace(/\/$/, ''))
-            const hash = qs.parse(window.location.hash.substring(1).replace(/[/$]/, ''))
+            const query = parseQueryParams(window.location.search.substring(1).replace(/\/$/, ''))
+            const hash = parseQueryParams(window.location.hash.substring(1).replace(/[/$]/, ''))
             const params = Object.assign({}, query, hash)
 
             if (params.error) {
