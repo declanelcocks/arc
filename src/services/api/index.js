@@ -12,20 +12,13 @@ export const checkStatus = (response) => {
   throw error
 }
 
-const parseJSON = (response) =>
-  new Promise((resolve) => response.json()
-    .then((json) => resolve({
-      status: response.status,
-      ok: response.ok,
-      json,
-    })))
+export const parseJSON = response => response.json()
 
-export const parseSettings = ({ method = 'get', data, locale, authorization, ...otherSettings } = {}) => {
+export const parseSettings = ({ method = 'get', data, locale, ...otherSettings } = {}) => {
   const headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
     'Accept-Language': locale,
-    'authorization': authorization ? `Bearer ${authorization}` : undefined,
   }
 
   const settings = {
@@ -46,27 +39,10 @@ export const parseEndpoint = (endpoint, params) => {
 
 const api = {}
 
-api.request = (endpoint, { params, ...settings } = {}) => {
-  settings.authorization = localStorage.getItem('token') || null
-
-  return new Promise((resolve, reject) =>
-    fetch(parseEndpoint(endpoint, params), parseSettings(settings))
-      .then(parseJSON)
-      .then((response) => {
-        if (response.ok) {
-          return resolve(response.json);
-        }
-
-        // Extract the error from the server's json
-        // Expects the API to respond to an error with:
-        // response: { error: 'This is an error message' }
-        return reject(response.json.error);
-      })
-      .catch((error) => reject({
-        networkError: error.message,
-      }))
-  )
-}
+api.request = (endpoint, { params, ...settings } = {}) =>
+  fetch(parseEndpoint(endpoint, params), parseSettings(settings))
+    .then(checkStatus)
+    .then(parseJSON)
 
 ;['delete', 'get'].forEach((method) => {
   api[method] = (endpoint, settings) => api.request(endpoint, { method, ...settings })
