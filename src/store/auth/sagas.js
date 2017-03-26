@@ -235,7 +235,7 @@ export function* watchAuthLoginGithub() {
   }
 }
 
-export function* loginLocal({ token }) {
+export function* loginLocal() {
   try {
     const { token, user } = yield api.get('/users')
     cookie.save('token', token)

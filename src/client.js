@@ -8,8 +8,6 @@ import { match, Router, useRouterHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { basename } from 'config'
 import configureStore from 'store/configure'
-import { authLoginRequest } from 'store/actions'
-
 import routes from 'routes'
 
 // eslint-disable-next-line no-underscore-dangle

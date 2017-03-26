@@ -2,7 +2,7 @@ import React from 'react'
 import { configure, addDecorator, setAddon } from '@kadira/storybook'
 import { Provider } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
-import infoAddon from '@kadira/react-storybook-addon-info';
+import infoAddon from '@kadira/react-storybook-addon-info'
 
 import configureStore from 'store/configure'
 import theme from 'components/themes/default'

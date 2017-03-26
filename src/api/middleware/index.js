@@ -26,9 +26,7 @@ export function isAuthenticated(req, res, next) {
 }
 
 export function ensureAuth(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
+  if (req.isAuthenticated()) return next()
 
-  return res.status(401).send({ error: 'Unauthorized' });
+  return res.status(401).send({ error: 'Unauthorized' })
 }

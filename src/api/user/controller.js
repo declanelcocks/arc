@@ -18,7 +18,7 @@ export const generateToken = (user) => {
 export const currentUser = (req, res) => {
   if (!req.user) return res.status(401).send({ error: 'Your login has expired.' })
 
-  User.findOne({ _id: req.user._id }, (err, user) =>
+  return User.findOne({ _id: req.user._id }, (err, user) =>
     res.send({ token: generateToken(user), user })
   )
 }
