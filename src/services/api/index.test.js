@@ -21,7 +21,9 @@ describe('parseJSON', () => {
     const response = {
       json: jest.fn(() => 'foo'),
     }
-    expect(parseJSON(response)).toBe('foo')
+
+    parseJSON(response)
+    expect(response.json).toHaveBeenCalled()
   })
 })
 
@@ -62,13 +64,15 @@ describe('api', () => {
   beforeEach(() => {
     global.fetch = jest.fn(() => Promise.resolve({
       ok: true,
-      json: jest.fn(),
+      json: jest.fn(() => Promise.resolve()),
     }))
   })
 
   test('request', async () => {
     expect(global.fetch).not.toBeCalled()
+
     await api.request('/foo')
+
     expect(global.fetch).toHaveBeenCalledWith(
       'https://api.foo.com/foo',
       expect.objectContaining({
@@ -80,7 +84,9 @@ describe('api', () => {
   ;['delete', 'get', 'post', 'put', 'patch'].forEach((method) => {
     test(method, async () => {
       expect(global.fetch).not.toBeCalled()
+
       await api[method]('/foo')
+
       expect(global.fetch).toHaveBeenCalledWith(
         'https://api.foo.com/foo',
         expect.objectContaining({ method })

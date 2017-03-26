@@ -13,7 +13,7 @@ export const checkStatus = (response) => {
   throw error
 }
 
-const parseJSON = (response) =>
+export const parseJSON = (response) =>
   new Promise((resolve) => response.json()
     .then((json) => resolve({
       status: response.status,
