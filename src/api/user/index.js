@@ -6,8 +6,6 @@ import { currentUser, authGithub, authGithubCallback } from './controller'
 
 const router = new Router()
 
-// router.post('/', signup)
-// router.delete('/', requireLogin, remove)
 router.get('/users', ensureAuth, currentUser)
 router.post('/auth/github', authGithub)
 router.get('/auth/github/callback', authGithubCallback)

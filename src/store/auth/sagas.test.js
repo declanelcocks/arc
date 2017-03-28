@@ -27,6 +27,23 @@ describe('promises', () => {
       expect(promise()).toBeInstanceOf(Promise)
     })
   })
+
+  test('oauth2 returns a promise', () => {
+    const promise = sagas.oauth2
+    expect(promise()).toBeInstanceOf(Promise)
+  })
+
+  test('openPopup returns a promise', () => {
+    const payload = { url: {}, config: {} }
+    const promise = sagas.openPopup
+    expect(promise(payload)).toBeInstanceOf(Promise)
+  })
+
+  test('closePopup returns a promise', () => {
+    const payload = { window: {}, interval: {} }
+    const promise = sagas.closePopup
+    expect(promise(payload)).toBeInstanceOf(Promise)
+  })
 })
 
 test('appendFbRoot', () => {
@@ -134,6 +151,12 @@ test('watchAuthLoginGoogle', () => {
   expect(generator.next(payload).value).toEqual(call(sagas.prepareGoogle, 1))
   generator.next()
   expect(generator.next(payload).value).toEqual(call(sagas.loginGoogle, 1))
+})
+
+test('watchAuthLoginGithub', () => {
+  const generator = sagas.watchAuthLoginGithub()
+  generator.next()
+  expect(generator.next().value).toEqual(call(sagas.loginGithub))
 })
 
 test('saga', () => {
