@@ -16,7 +16,7 @@ import api from 'api'
 import routes from 'routes'
 import configureStore from 'store/configure'
 import { env, port, ip, mongo, basename } from 'config'
-import { setCsrfToken, authLoginRequest } from 'store/actions'
+import { setCsrfToken, authUser } from 'store/actions'
 import Html from 'components/Html'
 
 const router = new Router()
@@ -40,7 +40,7 @@ router.use((req, res, next) => {
   cookie.plugToRequest(req, res)
   const token = req.cookies.token
 
-  if (token) store.dispatch(authLoginRequest('local', { token }))
+  if (token) store.dispatch(authUser())
   store.dispatch(setCsrfToken(req.csrfToken()))
 
   match({ history, routes, location }, (error, redirectLocation, renderProps) => {

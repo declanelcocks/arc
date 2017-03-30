@@ -9,24 +9,24 @@ const InnerButton = styled.div`
   align-items: center;
 `
 
-const UserButton = ({ user, onLogin, onLogout, ...props }) => {
+const UserButton = ({ authenticated, onLogin, onLogout, ...props }) => {
   return (
     <div>
-      {user &&
+      {authenticated &&
         <Button {...props} onClick={onLogout}>
           <InnerButton>
             Sign out
           </InnerButton>
         </Button>
       }
-      {!user && <Button {...props} onClick={onLogin}>Sign in</Button>}
+      {!authenticated && <Button {...props} onClick={onLogin}>Sign in</Button>}
       <LoginModal />
     </div>
   )
 }
 
 UserButton.propTypes = {
-  user: PropTypes.object,
+  authenticated: PropTypes.bool,
   onLogin: PropTypes.func.isRequired,
   onLogout: PropTypes.func.isRequired,
 }

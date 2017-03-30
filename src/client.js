@@ -1,5 +1,6 @@
 import 'babel-polyfill'
 import React from 'react'
+import cookie from 'react-cookie'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { AppContainer } from 'react-hot-loader'
@@ -8,6 +9,7 @@ import { match, Router, useRouterHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { basename } from 'config'
 import configureStore from 'store/configure'
+import { authLoginRequest } from 'store/actions'
 import routes from 'routes'
 
 // eslint-disable-next-line no-underscore-dangle
@@ -19,6 +21,11 @@ const root = document.getElementById('app')
 
 const { pathname, search, hash } = window.location
 const location = `${pathname}${search}${hash}`
+
+const token = cookie.load('token')
+if (initialState.auth.authenticated && token) {
+  store.dispatch(authLoginRequest('local', { token }))
+}
 
 const renderApp = () => {
   match({ history, routes, location }, (error, redirectLocation, renderProps) => {

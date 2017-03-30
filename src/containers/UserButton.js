@@ -8,7 +8,7 @@ import UserButton from 'components/organisms/UserButton'
 const UserButtonContainer = props => <UserButton {...props} />
 
 const mapStateToProps = (state) => ({
-  user: fromAuth.getUser(state),
+  authenticated: fromAuth.getAuthenticated(state),
 })
 
 const mapDispatchToProps = (dispatch) => ({
