@@ -21,6 +21,8 @@ const styles = css`
   align-items: center;
   white-space: nowrap;
   font-size: ${fontSize};
+  text-transform: uppercase;
+  letter-spacing: 0.065em;
   border: 0.0625em solid ${ifProp('transparent', 'currentcolor', 'transparent')};
   height: 2.5em;
   justify-content: center;
@@ -31,17 +33,41 @@ const styles = css`
   border-radius: 0.125em;
   box-sizing: border-box;
   pointer-events: ${ifProp('disabled', 'none', 'auto')};
-  transition: background-color 250ms ease-out, color 250ms ease-out, border-color 250ms ease-out;
+  box-shadow: ${ifProp('transparent', 'none', `
+    0 2px 5px 0 rgba(0, 0, 0, 0.2),
+    0 2px 10px 0 rgba(0, 0, 0, 0.2)
+  `)};
   background-color: ${backgroundColor};
   color: ${foregroundColor};
+  transition: background-color 250ms ease-out,
+              color 250ms ease-out,
+              border-color 250ms ease-out,
+              box-shadow 250ms ease-out,
+              transform 150ms ease-out;
 
   &:hover, &:focus, &:active {
     background-color: ${hoverBackgroundColor};
     color: ${hoverForegroundColor};
   }
 
-  &:focus {
-    outline: none
+  &:hover {
+    box-shadow: ${ifProp('transparent', 'none', `
+      0 3px 7px 0 rgba(0, 0, 0, 0.2),
+      0 4px 12px 0 rgba(0, 0, 0, 0.2)
+    `)};
+  }
+
+  &:not(:focus):hover {
+    transform: translateY(-1px);
+  }
+
+  &:focus,
+  &:focus:hover {
+    outline: none;
+    box-shadow: ${ifProp('transparent', 'none', `
+      0 2px 3px 0 rgba(0, 0, 0, 0.3),
+      0 2px 8px 0 rgba(0, 0, 0, 0.3);
+    `)};
   }
 `
 
