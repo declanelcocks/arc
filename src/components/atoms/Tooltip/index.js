@@ -49,7 +49,6 @@ const styles = css`
 
   &:before {
     content: attr(data-title);
-    font-family: ${font('primary')};
     white-space: nowrap;
     text-transform: none;
     font-size: 0.8125rem;

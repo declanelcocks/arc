@@ -30,7 +30,6 @@ const Text = styled(Paragraph)`
   font-weight: 300;
   font-size: 1.35rem;
   line-height: 1.35em;
-  letter-spacing: 0.07em;
   @media screen and (max-width: 640px) {
     font-size: 1rem;
   }

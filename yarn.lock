@@ -3180,6 +3180,10 @@ follow-redirects@1.0.0:
   dependencies:
     debug "^2.2.0"
 
+fontfaceobserver@^2.0.9:
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/fontfaceobserver/-/fontfaceobserver-2.0.9.tgz#fb61e1053bd28d38cd4750a05b30f5130b32e97a"
+
 for-in@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"

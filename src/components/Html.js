@@ -21,6 +21,9 @@ const Html = ({ styles, assets, state, content }) => {
         {Object.keys(assets.javascript).reverse().map((key) =>
           <script key={key} src={assets.javascript[key]} />
         )}
+
+        {/* see app/setup/fontObserver.js */}
+        <link href="https://fonts.googleapis.com/css?family=Muli:300,500,600" rel="stylesheet" />
       </body>
     </html>
   )

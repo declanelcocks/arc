@@ -6,7 +6,7 @@ import { ifProp } from 'styled-tools'
 export const fontSize = ({ height }) => `${height / 35.5555555556}rem`
 
 const styles = css`
-  font-family: ${font('primary')};
+  font-family: inherit;
   display: block;
   width: 100%;
   margin: 0;

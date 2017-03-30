@@ -11,6 +11,7 @@ import { basename } from 'config'
 import configureStore from 'store/configure'
 import { authLoginRequest } from 'store/actions'
 import routes from 'routes'
+import FontFaceObserver from 'fontfaceobserver'
 
 // eslint-disable-next-line no-underscore-dangle
 const initialState = window.__INITIAL_STATE__
@@ -26,6 +27,17 @@ const token = cookie.load('token')
 if (initialState.auth.authenticated && token) {
   store.dispatch(authLoginRequest('local', { token }))
 }
+
+// Observe loading of Open Sans (to remove open sans, remove the <link> tag in
+// the index.html file and this observer)
+const fontObserver = new FontFaceObserver('Muli', {});
+
+// When Open Sans is loaded, add a font-family using Open Sans to the body
+fontObserver.load().then(() => {
+  document.body.classList.add('fontloaded');
+}, () => {
+  document.body.classList.remove('fontloaded');
+});
 
 const renderApp = () => {
   match({ history, routes, location }, (error, redirectLocation, renderProps) => {

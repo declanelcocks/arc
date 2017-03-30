@@ -17,7 +17,6 @@ const hoverForegroundColor = ({ disabled, transparent }) => !disabled && transpa
 
 const styles = css`
   display: inline-flex;
-  font-family: ${font('primary')};
   align-items: center;
   white-space: nowrap;
   font-size: ${fontSize};
@@ -30,7 +29,7 @@ const styles = css`
   cursor: ${ifProp('disabled', 'default', 'pointer')};
   appearance: none;
   padding: 0 1em;
-  border-radius: 0.125em;
+  border-radius: 0.25em;
   box-sizing: border-box;
   pointer-events: ${ifProp('disabled', 'none', 'auto')};
   box-shadow: ${ifProp('transparent', 'none', `

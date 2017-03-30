@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { font, palette } from 'styled-theme'
 
 const Atom = styled.span`
-  font-family: ${font('primary')};
   color: ${palette({ grayscale: 0 }, 1)};
 `
 

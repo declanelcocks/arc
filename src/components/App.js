@@ -7,6 +7,11 @@ import theme from './themes/default'
 injectGlobal`
   body {
     margin: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  body.fontloaded {
+    font-family: 'Muli', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 `
 
