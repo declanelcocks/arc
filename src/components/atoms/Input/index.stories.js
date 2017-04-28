@@ -3,28 +3,28 @@ import { storiesOf } from '@kadira/storybook'
 import Input from '.'
 
 storiesOf('Input', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <Input />
   ))
-  .add('reverse', () => (
+  .addWithInfo('reverse', () => (
     <Input reverse />
   ))
-  .add('height', () => (
+  .addWithInfo('height', () => (
     <Input height={100} />
   ))
-  .add('invalid', () => (
+  .addWithInfo('invalid', () => (
     <Input invalid />
   ))
-  .add('type textarea', () => (
+  .addWithInfo('type textarea', () => (
     <Input type="textarea" />
   ))
-  .add('type checkbox', () => (
+  .addWithInfo('type checkbox', () => (
     <Input type="checkbox" />
   ))
-  .add('type radio', () => (
+  .addWithInfo('type radio', () => (
     <Input type="radio" />
   ))
-  .add('type select', () => (
+  .addWithInfo('type select', () => (
     <Input type="select">
       <option>Option 1</option>
       <option>Option 2</option>

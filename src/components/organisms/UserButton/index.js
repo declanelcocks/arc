@@ -9,17 +9,12 @@ const InnerButton = styled.div`
   align-items: center;
 `
 
-const Image = styled.img`
-  margin-right: 0.5rem;
-`
-
 const UserButton = ({ user, onLogin, onLogout, ...props }) => {
   return (
     <div>
       {user &&
         <Button {...props} onClick={onLogout}>
           <InnerButton>
-            <Image src={user.picture} width={20} height={20} />
             Sign out
           </InnerButton>
         </Button>
@@ -31,9 +26,7 @@ const UserButton = ({ user, onLogin, onLogout, ...props }) => {
 }
 
 UserButton.propTypes = {
-  user: PropTypes.shape({
-    picture: PropTypes.string.isRequired,
-  }),
+  user: PropTypes.object,
   onLogin: PropTypes.func.isRequired,
   onLogout: PropTypes.func.isRequired,
 }

@@ -3,12 +3,12 @@ import { storiesOf } from '@kadira/storybook'
 import Link from '.'
 
 storiesOf('Link', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <Link href="https://github.com/diegohaz/arc">ARc repository</Link>
   ))
-  .add('reverse', () => (
+  .addWithInfo('reverse', () => (
     <Link href="https://github.com/diegohaz/arc" reverse>ARc repository</Link>
   ))
-  .add('another palette', () => (
+  .addWithInfo('another palette', () => (
     <Link href="https://github.com/diegohaz/arc" palette="secondary">ARc repository</Link>
   ))

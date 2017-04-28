@@ -3,9 +3,9 @@ import { storiesOf } from '@kadira/storybook'
 import PrimaryNavigation from '.'
 
 storiesOf('PrimaryNavigation', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <PrimaryNavigation />
   ))
-  .add('reverse', () => (
+  .addWithInfo('reverse', () => (
     <PrimaryNavigation reverse />
   ))

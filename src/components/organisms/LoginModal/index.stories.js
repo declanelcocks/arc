@@ -3,7 +3,7 @@ import { storiesOf, action } from '@kadira/storybook'
 import LoginModal from '.'
 
 storiesOf('LoginModal', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <LoginModal
       onFacebookLogin={action('facebook')}
       onGoogleLogin={action('google')}

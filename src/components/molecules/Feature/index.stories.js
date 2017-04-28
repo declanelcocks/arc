@@ -3,17 +3,17 @@ import { storiesOf } from '@kadira/storybook'
 import Feature from '.'
 
 storiesOf('Feature', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <Feature title="ARc">
       Ullamco duis in labore consectetur ad exercitation esse esse duis mollit sint.
     </Feature>
   ))
-  .add('with link', () => (
+  .addWithInfo('with link', () => (
     <Feature title="ARc" link="https://github.com/diegohaz/arc">
       Ullamco duis in labore consectetur ad exercitation esse esse duis mollit sint.
     </Feature>
   ))
-  .add('with icon', () => (
+  .addWithInfo('with icon', () => (
     <Feature icon="close" title="ARc">
       Ullamco duis in labore consectetur ad exercitation esse esse duis mollit sint.
     </Feature>

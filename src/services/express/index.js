@@ -21,6 +21,10 @@ export default (routes) => {
     app.use(forceSSL)
   }
 
+  if (env === 'development') {
+    require('./env')
+  }
+
   /* istanbul ignore next */
   if (env === 'production' || env === 'development') {
     app.use(compression())

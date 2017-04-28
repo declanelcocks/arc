@@ -3,7 +3,7 @@ import { storiesOf } from '@kadira/storybook'
 import Table from '.'
 
 storiesOf('Table', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <Table>
       <tr>
         <td>Cell 1</td>
@@ -17,7 +17,7 @@ storiesOf('Table', module)
       </tr>
     </Table>
   ))
-  .add('with head', () => (
+  .addWithInfo('with head', () => (
     <Table
       head={
         <tr>
@@ -39,7 +39,7 @@ storiesOf('Table', module)
       </tr>
     </Table>
   ))
-  .add('with foot', () => (
+  .addWithInfo('with foot', () => (
     <Table
       foot={
         <tr>
@@ -61,7 +61,7 @@ storiesOf('Table', module)
       </tr>
     </Table>
   ))
-  .add('with caption', () => (
+  .addWithInfo('with caption', () => (
     <Table caption="Hello">
       <tr>
         <td>Cell 1</td>

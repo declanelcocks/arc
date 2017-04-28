@@ -3,9 +3,9 @@ import { storiesOf } from '@kadira/storybook'
 import Molecule from '.'
 
 storiesOf('Molecule', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <Molecule>Hello</Molecule>
   ))
-  .add('reverse', () => (
+  .addWithInfo('reverse', () => (
     <Molecule reverse>Hello</Molecule>
   ))

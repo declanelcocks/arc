@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react'
+import cookie from 'react-cookie'
 import serialize from 'serialize-javascript'
 import styleSheet from 'styled-components/lib/models/StyleSheet'
 import cors from 'cors'
@@ -15,7 +16,7 @@ import api from 'api'
 import routes from 'routes'
 import configureStore from 'store/configure'
 import { env, port, ip, mongo, basename } from 'config'
-import { setCsrfToken } from 'store/actions'
+import { setCsrfToken, authLoginRequest } from 'store/actions'
 import Html from 'components/Html'
 
 const router = new Router()
@@ -36,6 +37,10 @@ router.use((req, res, next) => {
   const store = configureStore({}, memoryHistory)
   const history = syncHistoryWithStore(memoryHistory, store)
 
+  cookie.plugToRequest(req, res)
+  const token = req.cookies.token
+
+  if (token) store.dispatch(authLoginRequest('local', { token }))
   store.dispatch(setCsrfToken(req.csrfToken()))
 
   match({ history, routes, location }, (error, redirectLocation, renderProps) => {

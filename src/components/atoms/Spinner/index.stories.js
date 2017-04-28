@@ -3,12 +3,12 @@ import { storiesOf } from '@kadira/storybook'
 import Spinner from '.'
 
 storiesOf('Spinner', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <Spinner />
   ))
-  .add('reverse', () => (
+  .addWithInfo('reverse', () => (
     <Spinner reverse />
   ))
-  .add('another palette', () => (
+  .addWithInfo('another palette', () => (
     <Spinner palette="secondary" />
   ))

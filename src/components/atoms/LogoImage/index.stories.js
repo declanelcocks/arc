@@ -3,6 +3,6 @@ import { storiesOf } from '@kadira/storybook'
 import LogoImage from '.'
 
 storiesOf('LogoImage', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <LogoImage width={200} />
   ))

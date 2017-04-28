@@ -3,7 +3,7 @@ import { storiesOf } from '@kadira/storybook'
 import TableRow from '.'
 
 storiesOf('TableRow', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <table>
       <thead>
         <TableRow>

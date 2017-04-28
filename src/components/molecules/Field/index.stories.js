@@ -3,30 +3,30 @@ import { storiesOf } from '@kadira/storybook'
 import Field from '.'
 
 storiesOf('Field', module)
-  .add('default', () => (
+  .addWithInfo('default', () => (
     <Field name="field" />
   ))
-  .add('with label', () => (
+  .addWithInfo('with label', () => (
     <Field name="field" label="Label" />
   ))
-  .add('invalid', () => (
+  .addWithInfo('invalid', () => (
     <Field name="field" label="Label" invalid />
   ))
-  .add('invalid with error message', () => (
+  .addWithInfo('invalid with error message', () => (
     <Field name="field" label="Label" error="Invalid" invalid />
   ))
-  .add('type textarea', () => (
+  .addWithInfo('type textarea', () => (
     <Field name="field" label="Label" type="textarea" />
   ))
-  .add('type select', () => (
+  .addWithInfo('type select', () => (
     <Field name="field" label="Label" type="select" />
   ))
-  .add('type checkbox', () => (
+  .addWithInfo('type checkbox', () => (
     <Field name="field" label="Label" type="checkbox" />
   ))
-  .add('type radio', () => (
+  .addWithInfo('type radio', () => (
     <Field name="field" label="Label" type="radio" />
   ))
-  .add('type radio invalid with error message', () => (
+  .addWithInfo('type radio invalid with error message', () => (
     <Field name="field" label="Label" type="radio" error="Invalid" invalid />
   ))
